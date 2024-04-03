@@ -13,7 +13,7 @@ const sendMail=async (req, res) => {
     // Construct email message
     const mailOptions = {
       from: 'rk8271740@gmail.com',
-      to: 'rajukumarsaw184@gmail.com',
+      to: 'info@redpositive.in',
       subject: 'Selected Row Data',
       text: JSON.stringify(selectedRows)
     };
