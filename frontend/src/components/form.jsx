@@ -15,6 +15,7 @@ const App = ({ Data }) => {
   const [showForm, setShowForm] = useState(false);
   const [updateRow, setUpdateRow] = useState(false);
 
+  const emptyArray = Array(4).fill("");
   useEffect(() => {
     if (Data && Data.length > 0) {
       setData(Data);
@@ -131,8 +132,9 @@ const App = ({ Data }) => {
             <th className="px-4 py-2 text-left">Actions</th>
           </tr>
         </thead>
+        
         <tbody className=' bg-[#c9deed] text-[#1b363b]'>
-          {data && data.map((row) => (
+          { Data? data && data.map((row) => (
             <tr key={row._id}>
               <td className="px-4 py-2">
                 <input type="checkbox" onChange={() => handleCheckboxChange(row._id)} checked={selectedRows.some(selectedRow => selectedRow._id === row._id)} />
@@ -151,9 +153,21 @@ const App = ({ Data }) => {
                 </button>
               </td>
             </tr>
-          ))}
+          )):(emptyArray.map((item)=>(
+            <tr key={1} className=' h-2 animate-pulse'>
+              <td className="px-4 py-2">{item}</td>
+              <td className="px-4 py-2">loading...</td>
+              <td className="px-4 py-2">loading...</td>
+              <td className="px-4 py-2">loading...</td>
+              <td className="px-4 py-2">loading...</td>
+              <td className="px-4 py-2">loading...</td>
+              <td className="px-4 py-2">loading...</td>
+            </tr>
+          ))) }  
         </tbody>
       </table>
+     
+
       <div className="mb-4">
         <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mr-2 rounded-md" onClick={handleSendEmail}>
           Send
